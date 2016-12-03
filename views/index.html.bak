@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React Tutorial</title>
+    <!-- Not present in the tutorial. Just for basic styling. -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.5.1/css/tachyons.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.16/browser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+    <script src="https://unpkg.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2fgI8v3-pjcX-Mz-pNw-SjuhA-D1Cjq8"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+  <!--   <script type="text/babel" src="scripts/example.js"></script> -->
+    
+    
+    <script type="text/babel">
+      
+      const chartObj = 
+{  
+   date:{  
+      gregorianTerrestrial:'14.6.1992 13:4:0',
+      gregorianTerrestrialRaw:{  
+         day:14,
+         month:6,
+         year:1992,
+         hours:13,
+         minutes:4,
+         seconds:0,
+         julianDate:2448787.5,
+         julianTime:0.5444444444444444,
+         julian:2448788.0444444446,
+         j2000:1992.4518670621344,
+         b1950:1992.452077876645,
+         j1900:1992.4518670621344,
+         delta:58.66680235521803,
+         terrestrial:2448788.0444444446,
+         universal:2448788.043765431,
+         universalDate:[  
+            Object
+         ],
+         universalDateString:'14.6.1992 13:3:1.333'
+      },
+      gregorianUniversal:'14.6.1992 13:3:1.333',
+      gregorianDelta:'00:00:58.66680235521803',
+      julianTerrestrial:2448788.0444444446,
+      julianUniversal:2448788.043765431,
+      julianDelta:0.0006790139161483568
+   },
+   observer:{  
+      name:'earth',
+      longitueGeodetic:-117.161083,
+      longitudeGeodecentric:-117.161083,
+      latitudeGeodetic:32.715738,
+      latitudeGeodecentric:32.540980016161264,
+      heightGeodetic:8,
+      heightGeodecentric:6371.935392264582
+   },
+   observed:{  
+      sun:{  
+         name:'sun',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'23°42\'35"',
+         apparentLongitudeDms360:'83°42\'35"',
+         apparentLongitudeDd:83.70993659542255,
+         geocentricDistanceKm:-1
+      },
+      mercury:{  
+         name:'mercury',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'9°23\'20"',
+         apparentLongitudeDms360:'99°23\'20"',
+         apparentLongitudeDd:99.38889033347978,
+         geocentricDistanceKm:-1
+      },
+      venus:{  
+         name:'venus',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'23°56\'38"',
+         apparentLongitudeDms360:'83°56\'38"',
+         apparentLongitudeDd:83.94416013848475,
+         geocentricDistanceKm:-1
+      },
+      moon:{  
+         name:'moon',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'16°8\'32"',
+         apparentLongitudeDms360:'256°8\'32"',
+         apparentLongitudeDd:256.14238200243074,
+         geocentricDistanceKm:61.79326975998236
+      },
+      mars:{  
+         name:'mars',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'29°54\'41"',
+         apparentLongitudeDms360:'29°54\'41"',
+         apparentLongitudeDd:29.91156464890324,
+         geocentricDistanceKm:-1
+      },
+      jupiter:{  
+         name:'jupiter',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'7°29\'4"',
+         apparentLongitudeDms360:'157°29\'4"',
+         apparentLongitudeDd:157.4846872942498,
+         geocentricDistanceKm:-1
+      },
+      saturn:{  
+         name:'saturn',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'18°15\'22"',
+         apparentLongitudeDms360:'318°15\'22"',
+         apparentLongitudeDd:318.2562267833362,
+         geocentricDistanceKm:-1
+      },
+      uranus:{  
+         name:'uranus',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'16°56\'25"',
+         apparentLongitudeDms360:'286°56\'25"',
+         apparentLongitudeDd:286.9402903123188,
+         geocentricDistanceKm:-1
+      },
+      neptune:{  
+         name:'neptune',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'18°13\'19"',
+         apparentLongitudeDms360:'288°13\'19"',
+         apparentLongitudeDd:288.2220857498266,
+         geocentricDistanceKm:-1
+      },
+      pluto:{  
+         name:'pluto',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'20°42\'7"',
+         apparentLongitudeDms360:'230°42\'7"',
+         apparentLongitudeDd:230.70201131636722,
+         geocentricDistanceKm:-1
+      },
+      chiron:{  
+         name:'chiron',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'8°10\'41"',
+         apparentLongitudeDms360:'128°10\'41"',
+         apparentLongitudeDd:128.17810861204407,
+         geocentricDistanceKm:-1
+      },
+      sirius:{  
+         name:'sirius',
+         raw:[  
+            Object
+         ],
+         apparentLongitudeDms30:'11°12\'7"',
+         apparentLongitudeDms360:'101°12\'7"',
+         apparentLongitudeDd:1.7663081095919009,
+         geocentricDistanceKm:7777
+      }
+   }
+}
+      
+      console.log(chartObj);
+      console.log(chartObj.observed.sun.name);
+      
+      var royceObj = [
+        chartObj.observed.sun,
+        chartObj.observed.moon,
+        chartObj.observed.mercury,
+        chartObj.observed.venus,
+        chartObj.observed.mars,
+        chartObj.observed.jupiter,
+        chartObj.observed.saturn,
+        chartObj.observed.uranus,
+        chartObj.observed.neptune,
+        chartObj.observed.pluto
+      ];
+      
+      var data = [
+        {id: 1, signName: royceObj[0].name, sign: "Gemini", degrees: royceObj[0].apparentLongitudeDms30, degreesDM: royceObj[0].apparentLongitudeDd},
+        {id: 2, signName: royceObj[1].name, sign: "Gemini", degrees: royceObj[1].apparentLongitudeDms30, degreesDM: royceObj[1].apparentLongitudeDd},
+        {id: 3, signName: royceObj[2].name, sign: "Gemini", degrees: royceObj[2].apparentLongitudeDms30, degreesDM: royceObj[2].apparentLongitudeDd}, 
+        {id: 4, signName: royceObj[3].name, sign: "Gemini", degrees: royceObj[3].apparentLongitudeDms30, degreesDM: royceObj[3].apparentLongitudeDd},
+        {id: 5, signName: royceObj[4].name, sign: "Gemini", degrees: royceObj[4].apparentLongitudeDms30, degreesDM: royceObj[4].apparentLongitudeDd},
+        {id: 6, signName: royceObj[5].name, sign: "Gemini", degrees: royceObj[5].apparentLongitudeDms30, degreesDM: royceObj[5].apparentLongitudeDd},
+        {id: 7, signName: royceObj[6].name, sign: "Gemini", degrees: royceObj[6].apparentLongitudeDms30, degreesDM: royceObj[6].apparentLongitudeDd},
+        {id: 8, signName: royceObj[7].name, sign: "Gemini", degrees: royceObj[7].apparentLongitudeDms30, degreesDM: royceObj[7].apparentLongitudeDd},
+        {id: 9, signName: royceObj[8].name, sign: "Gemini", degrees: royceObj[8].apparentLongitudeDms30, degreesDM: royceObj[8].apparentLongitudeDd},
+        {id: 10, signName: royceObj[9].name, sign: "Gemini", degrees: royceObj[9].apparentLongitudeDms30, degreesDM: royceObj[9].apparentLongitudeDd}
+      ];
+      
+      var ATLANTIC_OCEAN = {
+        latitude: 29.532804,
+        longitude: -55.491477
+      };
+      
+      console.log(royceObj);
+      
+      var signs = [ 
+        "aries", 
+        "taurus", 
+        "gemini", 
+        "cancer", 
+        "leo", 
+        "virgo", 
+        "libra", 
+        "scorpio", 
+        "sagittarius", 
+        "capricorn", 
+        "aquarius", 
+        "pisces"
+      ];
+      
+      var degreesTest = Math.floor(83.70993659542255 / 30);
+      
+      console.log(signs[degreesTest]);
+   
+      function getSign(degrees) {
+        
+        var signNumber = Math.floor(degrees / 30);
+        
+        return (
+          signs[signNumber]
+        );
+      }
+      
+      var Sign = React.createClass({
+        
+        getInitialState: function() {
+          return {desc: 'testing'};
+        },
+        
+        render: function() {
+          var signNumber = Math.floor(this.props.degreesDM / 30);
+          var signNew = signs[signNumber];
+          
+          var data_post = {planet: this.props.signName, sign: signNew}; 
+          console.log("here's the data post!");
+          console.log(data_post);
+          console.log(this.state.desc);
+          
+         
+          $.ajax({
+            url: "/api/combinations",
+            dataType: 'json',
+            type: 'POST',
+            data: data_post,
+            timeout: 1000,
+            success: function(data) {
+              console.log("yay!");
+              console.log(data.description);
+              this.setState({desc: data.description});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+          
+          /*
+          $.get({
+            url: "/api/combinations",
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+              console.log("yay!");
+              console.log(data.description);
+              this.setState({desc: data.description});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+          */
+          return (
+            <div className="sign">
+              <h4>
+                {this.props.signName} in {signNew} at {this.props.degrees}
+              </h4>
+              <SignDescription signDesc={this.state.desc} />
+            </div>
+          );
+        }
+      });
+      
+      var SignDescription = React.createClass({
+        
+        
+        
+        render: function() {
+          
+          // var signNum = Math.floor(this.props.degreesDM / 30);
+          // var signNewer = signs[signNum];
+          
+          return (
+            <div className="signDescription">
+              <p>
+                {this.props.signDesc}
+              </p>
+            </div>
+          );
+        }
+      });
+      
+      var SignList = React.createClass({
+        render: function() {
+          
+          var newObj = this.props.data;
+          
+          console.log("SignList:")
+          console.log(newObj)
+          
+          var royceObj = [
+            newObj.observed.sun,
+            newObj.observed.moon,
+            newObj.observed.mercury,
+            newObj.observed.venus,
+            newObj.observed.mars,
+            newObj.observed.jupiter,
+            newObj.observed.saturn,
+            newObj.observed.uranus,
+            newObj.observed.neptune,
+            newObj.observed.pluto
+          ];
+          
+          console.log("SignList - 2:")
+          console.log(royceObj)
+          
+          var newData = [
+            {id: 1, signName: royceObj[0].name, sign: "Gemini", degrees: royceObj[0].apparentLongitudeDms30, degreesDM: royceObj[0].apparentLongitudeDd},
+            {id: 2, signName: royceObj[1].name, sign: "Gemini", degrees: royceObj[1].apparentLongitudeDms30, degreesDM: royceObj[1].apparentLongitudeDd},
+            {id: 3, signName: royceObj[2].name, sign: "Gemini", degrees: royceObj[2].apparentLongitudeDms30, degreesDM: royceObj[2].apparentLongitudeDd}, 
+            {id: 4, signName: royceObj[3].name, sign: "Gemini", degrees: royceObj[3].apparentLongitudeDms30, degreesDM: royceObj[3].apparentLongitudeDd},
+            {id: 5, signName: royceObj[4].name, sign: "Gemini", degrees: royceObj[4].apparentLongitudeDms30, degreesDM: royceObj[4].apparentLongitudeDd},
+            {id: 6, signName: royceObj[5].name, sign: "Gemini", degrees: royceObj[5].apparentLongitudeDms30, degreesDM: royceObj[5].apparentLongitudeDd},
+            {id: 7, signName: royceObj[6].name, sign: "Gemini", degrees: royceObj[6].apparentLongitudeDms30, degreesDM: royceObj[6].apparentLongitudeDd},
+            {id: 8, signName: royceObj[7].name, sign: "Gemini", degrees: royceObj[7].apparentLongitudeDms30, degreesDM: royceObj[7].apparentLongitudeDd},
+            {id: 9, signName: royceObj[8].name, sign: "Gemini", degrees: royceObj[8].apparentLongitudeDms30, degreesDM: royceObj[8].apparentLongitudeDd},
+            {id: 10, signName: royceObj[9].name, sign: "Gemini", degrees: royceObj[9].apparentLongitudeDms30, degreesDM: royceObj[9].apparentLongitudeDd}
+          ];
+          
+          console.log("SignList - 3:")
+          console.log(newData)
+          
+          
+          var signNodes = newData.map(function(data) {
+            return (
+              <Sign signName={data.signName} sign={data.sign} degrees={data.degrees} degreesDM={data.degreesDM} key={data.id}/>
+            );
+          });
+          
+          return (
+            <div className="signList">
+              {signNodes}
+            </div>
+          );
+        }
+      });
+      
+      var SignForm = React.createClass({
+        
+        getInitialState: function() {
+          return {date: '', day: '', month: '', year: '', time: '', lon: '', lat: '', loc: ''};
+        },
+        handleDateChange: function(e) {
+          this.setState({date: e.target.value});
+        },
+        handleDayChange: function(e) {
+          this.setState({day: e.target.value});
+        },
+        handleMonthChange: function(e) {
+          this.setState({month: e.target.value});
+        },
+        handleYearChange: function(e) {
+          this.setState({year: e.target.value});
+        },
+        handleTimeChange: function(e) {
+          this.setState({time: e.target.value});
+        },
+        handleLonChange: function(e) {
+          this.setState({lon: e.target.value});
+        },
+        handleLatChange: function(e) {
+          this.setState({lat: e.target.value});
+        },
+        handleLocChange: function(e) {
+          this.setState({loc: e.target.value});
+        },
+        
+        handleSubmit: function(e) {
+          e.preventDefault();
+          var date = this.state.date.trim();
+          var day = this.state.day.trim();
+          var month = this.state.month.trim();
+          var year = this.state.year.trim();
+          var time = this.state.time.trim();
+          var lon = this.state.lon.trim();
+          var lat = this.state.lat.trim();
+          var loc = this.state.loc.trim();
+          // var address = this.geocodeAddress(loc);
+          if ( !day || !month || !year || !time || !loc) {
+            return;
+          }
+          this.props.onSignSubmit({date: date, day: day, month: month, year: year, time: time, lon: lon, lat: lat, loc: loc});
+          this.setState({date: '', day: '', month: '', year: '', time: '', lon: '', lat: '', loc: ''});
+        },
+        
+        
+        
+        //"14.06.1992 13:04:00",  -117.161083, 32.7157380, 8, 0
+        render: function() {
+          
+          return (
+            <form className="signForm" onSubmit={this.handleSubmit}>
+              <h4>
+                <label>date</label>
+                <br/>
+                
+                
+                <input 
+                  type="text" 
+                  placeholder="day" 
+                  value={this.state.day}
+                  onChange={this.handleDayChange}
+                />
+                <br/>
+                <input 
+                  type="text" 
+                  placeholder="month" 
+                  value={this.state.month}
+                  onChange={this.handleMonthChange}
+                />
+                <br/>
+                <input 
+                  type="text" 
+                  placeholder="year" 
+                  value={this.state.year}
+                  onChange={this.handleYearChange}
+                />
+              </h4>
+              <h4>
+                <label>time</label>
+                <br/>
+                <input 
+                  type="text" 
+                  placeholder="13:04:00" 
+                  value={this.state.time}
+                  onChange={this.handleTimeChange}
+                />
+              </h4>
+              
+              
+              
+              <h4>
+                <label>location</label>
+                <br/>
+                <input 
+                  type="text" 
+                  placeholder="san diego, ca" 
+                  value={this.state.loc}
+                  onChange={this.handleLocChange}
+                />
+              </h4>
+              <input className="b ph3 pv2 input-reset ba b--black bg-transparent pointer f6 dib" type="submit" value="Post" />
+            </form>
+          );
+        }
+      });
+     
+      var ReportBox = React.createClass({
+        
+        getInitialState: function() {
+          return {data: chartObj}; //add data blank
+        },
+        
+        loadChartFromServer: function() {
+          
+          $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+              this.setState({data: data});
+              console.log("got data and set it to state success!");
+              console.log(this.state.data);
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+          
+        },
+        
+        handleSignSubmit: function(sign) {
+          $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            type: 'POST',
+            data: sign,
+            success: function(data) {
+              console.log("submitting data");
+              this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+          
+          
+        },
+              
+        componentDidMount: function() {
+          this.loadChartFromServer();
+          console.log("Chart Loaded!")
+          // setInterval(this.loadChartFromServer, this.props.pollInterval);
+        },
+        
+        render: function() {
+          console.log("this.state.data about to be rendered!")
+          console.log(this.state.data)
+          return (
+            <div className="reportBox w-100">
+              <div className="reportReport w-75 fl pa2">
+                <h1>report for {this.props.name} </h1>
+                <SignList data={this.state.data} />
+              </div>
+              <div className="reportReport w-25 fl pa2">
+                <h1>form!</h1>
+                <SignForm onSignSubmit={this.handleSignSubmit}  />
+              </div>  
+            </div>
+          );
+        }
+      });
+      
+      console.log(chartObj.observed)
+      
+      ReactDOM.render(
+        <ReportBox url="/api/charts" pollInterval={50000} name="you"/>,
+        document.getElementById('content')
+      );
+      
+      
+    </script>
+  </body>
+</html>
